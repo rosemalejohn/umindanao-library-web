@@ -2,6 +2,8 @@
 
 return [
 
+    'site_title' => 'University of Mindanao E-Library Admin',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -11,7 +13,7 @@ return [
     | running in. This may determine how you prefer to configure various
     | services your application utilizes. Set this in your ".env" file.
     |
-    */
+     */
 
     'env' => env('APP_ENV', 'production'),
 
@@ -24,7 +26,7 @@ return [
     | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
-    */
+     */
 
     'debug' => env('APP_DEBUG', false),
 
@@ -37,7 +39,7 @@ return [
     | the Artisan command line tool. You should set this to the root of
     | your application so that it is used when running Artisan tasks.
     |
-    */
+     */
 
     'url' => env('APP_URL', 'http://localhost'),
 
@@ -50,9 +52,9 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
-    */
+     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Manila',
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +65,7 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
-    */
+     */
 
     'locale' => 'en',
 
@@ -76,7 +78,7 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
-    */
+     */
 
     'fallback_locale' => 'en',
 
@@ -89,7 +91,7 @@ return [
     | to a random, 32 character string, otherwise these encrypted strings
     | will not be safe. Please do this before deploying an application!
     |
-    */
+     */
 
     'key' => env('APP_KEY'),
 
@@ -106,7 +108,7 @@ return [
     |
     | Available Settings: "single", "daily", "syslog", "errorlog"
     |
-    */
+     */
 
     'log' => env('APP_LOG', 'single'),
 
@@ -119,7 +121,7 @@ return [
     | request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
-    */
+     */
 
     'providers' => [
 
@@ -156,6 +158,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Barryvdh\Cors\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+
     ],
 
     /*
@@ -167,7 +173,7 @@ return [
     | is started. However, feel free to register as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
-    */
+     */
 
     'aliases' => [
 
@@ -201,6 +207,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

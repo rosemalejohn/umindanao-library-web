@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/umindanao-library":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/umindanao-library","hostpath":"E:/www/umindanao-library","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"E:/www/umindanao-library","disabled":false,"__vagrantfile":true}}}

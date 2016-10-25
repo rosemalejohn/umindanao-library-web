@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
 use App\Http\Controllers\Controller;
+use App\Traits\AuthenticatesAndRegistersUsers;
+use App\User;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -19,7 +19,7 @@ class AuthController extends Controller
     | authentication of existing users. By default, this controller uses
     | a simple trait to add these behaviors. Why don't you explore it?
     |
-    */
+     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
@@ -46,13 +46,13 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator()
     {
-        return Validator::make($data, [
+        return [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+            'username' => 'required|max:255|unique:users',
+            'password' => 'required|min:5|confirmed',
+        ];
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
         ]);
     }
