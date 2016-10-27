@@ -10,7 +10,7 @@ class VisitorController extends Controller
 {
     public function index()
     {
-        $members = Visitor::with('course', 'college')->get();
+        $members = Visitor::with('course', 'college')->paginate(10);
 
         return response()->json($members, 200);
     }
@@ -35,8 +35,8 @@ class VisitorController extends Controller
         return response()->json('Member deleted!', 200);
     }
 
-    public function update(Request $request, Visitor $visitor) 
-    {   
+    public function update(Request $request, Visitor $visitor)
+    {
         $this->validate($request, [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',

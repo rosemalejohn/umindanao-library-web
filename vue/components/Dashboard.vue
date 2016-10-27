@@ -125,6 +125,20 @@
 						</table>
 						<div v-if="!members.length" class="alert alert-info">No members registered!</div>
 					</div>
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li v-if="paginator.prev_page_url">
+								<a @click="previous()" href="javascript:;" aria-label="Previous">
+									<span aria-hidden="true">Prev &laquo;</span>
+								</a>
+							</li>
+							<li v-if="paginator.next_page_url">
+								<a @click="next()" href="javascript:;" aria-label="Next">
+									<span aria-hidden="true">&raquo; Next</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -146,7 +160,8 @@
 			return {
 				data: [],
 				members: [],
-				memberFilters: ''
+				memberFilters: '',
+				paginator: {}
 			}
 		},
 
@@ -155,10 +170,27 @@
 			getMembers() {
 
 				this.$http.get('members').then(response => {
-					this.members = response.data;
+					this.paginator = response.data;
+					this.members = this.paginator.data;
 					this.data = this.members;
 				})
 
+			},
+
+			next() {
+				this.$http.get(this.paginator.next_page_url).then(response => {
+					this.paginator = response.data;
+					this.members = this.paginator.data;
+					this.data = this.members;
+				})
+			},
+
+			previous() {
+				this.$http.get(this.paginator.prev_page_url).then(response => {
+					this.paginator = response.data;
+					this.members = this.paginator.data;
+					this.data = this.members;
+				})
 			},
 
 			remove(member) {
